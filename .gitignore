@@ -1,7 +1,4 @@
 node_modules/
 dist/
 .turbo/
-# the compiled engine comes from the release download, not git
-engine/*.pyd
-engine/*.bin
 __pycache__/

@@ -56,14 +56,14 @@ Orynr checks the server and tells you plainly if the address, port or key is wro
 
 ## Run from source
 
-The frontend (the terminal app in `frontend/`) is open source. The engine it talks to is shipped compiled.
+This repo is the complete package: the open frontend (the terminal app in `frontend/`) and the engine it talks to,
+shipped compiled in `engine/` (`orynr_server.cp311-win_amd64.pyd`).
 
 You need **Python 3.11** (64-bit) and **[Bun](https://bun.sh)**.
 
-1. Download **`orynr-engine-2.2.7-win64-py311.zip`** from [Releases](../../releases) and unzip it into `engine/`.
-2. `pip install -r engine/requirements.txt`
-3. Start the engine: `run_engine.cmd` (it listens on `http://127.0.0.1:4096`).
-4. In a second terminal: `cd frontend && bun install`, then `run_tui.cmd`.
+1. `pip install -r engine/requirements.txt`
+2. Start the engine: `run_engine.cmd` (it listens on `http://127.0.0.1:4096`).
+3. In a second terminal: `cd frontend && bun install`, then `run_tui.cmd`.
 
 The compiled engine is built for Python 3.11 on 64-bit Windows; other Python versions can't load it. The setup
 `.exe` has no such limit.
