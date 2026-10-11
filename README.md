@@ -3,14 +3,14 @@
 **An AI coding agent for your terminal — with your own models or cloud ones.**
 
 Orynr Code plans, writes, runs and checks code with you. It works with a model on your own GPU box (llama.cpp, vLLM,
-LM Studio, Ollama), with your **ChatGPT Plus/Pro** account, or with 20+ cloud providers — and it keeps long jobs
+LM Studio, Ollama), with your **ChatGPT Plus/Pro** account, or with 150+ cloud providers — and it keeps long jobs
 going without losing track.
 
 ![Orynr Code](docs/screenshots/home.png)
 
 ## Download
 
-**Most people:** download **`orynr_code_setup_2.2.7.exe`** from [Releases](../../releases) and run it. It installs
+**Most people:** download **`orynr_code_setup_2.2.8.exe`** from [Releases](../../releases) and run it. It installs
 everything it needs and works on any 64-bit Windows PC — no Python, no Node, nothing else to set up.
 
 ## What it does

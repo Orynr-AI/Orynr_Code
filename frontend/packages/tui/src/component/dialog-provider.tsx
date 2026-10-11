@@ -34,29 +34,6 @@ const PROVIDER_PRIORITY: Record<string, number> = {
 // address again updates it).
 const SELF_HOSTED = new Set(["local", "lmstudio", "vllm", "llamacpp", "ollama"])
 
-// WHITELIST: the picker shows ONLY these providers — the models.dev catalog carries ~150,
-// which is noise for a local-first product. Anything already connected/configured is also
-// kept, so a provider you use never disappears. Everything else is hidden.
-// Additional connectable cloud providers + routers/gateways to surface in the picker (shown under
-// the "Providers" heading). The models.dev catalog carries ~150; these are the ones worth offering
-// alongside the ranked "Popular" set above without dumping the whole list.
-const INCLUDED_EXTRA = new Set<string>([
-  "vercel", // AI Gateway (router)
-  "requesty", // router
-  "cerebras",
-  "fireworks-ai",
-  "deepinfra",
-  "perplexity",
-  "cohere",
-  "baseten",
-  "nebius",
-  "moonshotai", // Kimi
-  "alibaba", // Qwen
-  "amazon-bedrock",
-  "azure",
-])
-
-const INCLUDED_PROVIDERS = new Set<string>([...Object.keys(PROVIDER_PRIORITY), ...INCLUDED_EXTRA])
 
 const LOCAL_SERVER_OPTION_VALUE = "__orynr_local_server__"
 
@@ -78,16 +55,22 @@ type ProviderOption =
 
 type ListedProvider = { id: string; name: string; options?: { baseURL?: unknown } }
 
+// opencode's own providers (their free "Zen" models etc.) are never offered.
+function isOpencode(provider: ListedProvider) {
+  return /opencode/i.test(provider.id) || /opencode/i.test(provider.name)
+}
+
 // A server on this PC or the network: a self-hosted preset, or anything the engine reports with its own address.
 function isSelfHosted(provider: ListedProvider) {
   return SELF_HOSTED.has(provider.id) || Boolean(provider.options?.baseURL)
 }
 
 export function providerOptions(list: ListedProvider[], connected: string[] = []): ProviderOption[] {
-  const keep = new Set(connected)
   const listed: ProviderOption[] = [
     ...pipe(
-      list.filter((x) => !isSelfHosted(x) && (INCLUDED_PROVIDERS.has(x.id) || keep.has(x.id))),
+      // Every cloud provider the engine knows (Sai, 2026-10-11: the old whitelist hid ~130 of them); only
+      // self-hosted presets (one "Local or network server" entry covers them) and opencode's own are left out.
+      list.filter((x) => !isSelfHosted(x) && !isOpencode(x)),
       sortBy(
         (x) => PROVIDER_PRIORITY[x.id] ?? 99,
         (x) => x.name.toLowerCase(),

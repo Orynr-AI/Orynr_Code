@@ -30,23 +30,18 @@ describe("providerOptions", () => {
     expect(values).not.toContain("__orynr_custom_provider__")
   })
 
-  test("shows whitelisted providers (incl. routers + xai/grok) and hides the rest", () => {
+  test("shows every cloud provider, never opencode's own (2.2.8: the whitelist hid ~130 of them)", () => {
     const values = providerOptions([
       { id: "openai", name: "OpenAI" },
       { id: "deepseek", name: "DeepSeek" },
-      { id: "openrouter", name: "OpenRouter" }, // whitelisted router
-      { id: "xai", name: "xAI" }, // whitelisted (Grok)
-      { id: "mistral", name: "Mistral" }, // whitelisted
-      { id: "morph", name: "Morph" }, // not whitelisted
-      { id: "aws", name: "AWS Bedrock" }, // not whitelisted
+      { id: "morph", name: "Morph" },
+      { id: "aws", name: "AWS Bedrock" },
+      { id: "opencode", name: "OpenCode Zen" },
+      { id: "opencode-go", name: "OpenCode Go" },
     ]).map((option) => option.value)
-    expect(values).toContain("openai")
-    expect(values).toContain("deepseek")
-    expect(values).toContain("openrouter")
-    expect(values).toContain("xai")
-    expect(values).toContain("mistral")
-    expect(values).not.toContain("morph")
-    expect(values).not.toContain("aws")
+    for (const id of ["openai", "deepseek", "morph", "aws"]) expect(values).toContain(id)
+    expect(values).not.toContain("opencode")
+    expect(values).not.toContain("opencode-go")
   })
 
   test("keeps a connected cloud provider even when it is not whitelisted", () => {
