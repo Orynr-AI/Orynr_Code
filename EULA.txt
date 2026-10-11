@@ -1,0 +1,108 @@
+ORYNR CODE - END USER LICENSE AGREEMENT
+
+Version 2.0, effective 18 September 2026
+Orynr LLC - https://orynr.com - info@orynr.com
+
+Please read this agreement before you install or use Orynr Code. By installing or using Orynr Code you accept it. If you do not accept it, do not install or use Orynr Code.
+
+In this agreement, "Orynr Code" means the Orynr Code software (the installer, the programs it installs, their updates and their documentation), and "Orynr LLC", "we" and "us" mean Orynr LLC, a Florida limited liability company, which publishes Orynr Code.
+
+
+1. FREE TO USE
+
+Orynr Code is free. If you obtained it from the official website, https://orynr.com, we grant you a free, worldwide, non-exclusive, non-transferable licence to install and use it on any computers you own or control, for personal, educational or commercial work. There is no charge and no subscription for the software itself.
+
+Copies obtained anywhere else are not licensed and may have been altered. Always download Orynr Code from https://orynr.com.
+
+
+2. WHAT STAYS PROTECTED
+
+Orynr Code is free to use, but it is not open source. Its program files, source code, prompts, design and branding belong to Orynr LLC and are protected by copyright and other laws. This agreement lets you use Orynr Code; it does not give you ownership of it or any rights not written here.
+
+Except where the law allows it regardless of this agreement, you may not:
+- copy, publish, sell, rent, lend, sublicense or redistribute Orynr Code or its installer, or offer it for download anywhere (linking to https://orynr.com is welcome);
+- modify, translate, adapt or create derivative works of Orynr Code;
+- reverse-engineer, decompile, disassemble, unpack or extract its program files, or try to recover its source code, prompts or other contents;
+- remove or change any copyright, trademark or licence notice in it;
+- distribute a modified or repackaged copy, or use the Orynr name or logo in a way that suggests we endorse you or your product.
+
+
+3. YOUR WORK IS YOURS
+
+You own the code, files and other material you create with Orynr Code. We claim no rights in them.
+
+
+4. ORYNR CODE IS A TOOL - YOU ARE RESPONSIBLE FOR HOW IT IS USED
+
+Orynr Code is a software tool that acts on your instructions. It connects to the AI models you choose and, when you or your settings allow it, it can read, create, change and delete files, run commands and programs, install software, and reach the internet, on your computer or in a container.
+
+- You decide what Orynr Code is asked to do, what it is allowed to do, and whether to use what it produces. Everything done with Orynr Code, or done by it as a result of your instructions, settings or approvals, is your responsibility and not the responsibility of Orynr LLC.
+- AI output can be wrong, incomplete, insecure, or harmful, and can sound confident when it is wrong. Review and test all code, commands and changes before you rely on them, and especially before using them in production, with real data, or on systems that matter.
+- Keep backups and use version control. Use the sandbox modes and permission prompts for work you do not fully trust.
+- Use Orynr Code lawfully. Do not use it to harm people, systems or data, to get around security, or to infringe anyone's rights. You are responsible for following the laws, contracts and third-party terms that apply to you and to your work, including licences of code you generate or include.
+- Orynr Code is not designed for situations where a failure could lead to death, injury, or serious physical, environmental or financial harm, and you must not rely on it for them.
+
+
+5. AI MODELS AND OTHER THIRD-PARTY SERVICES
+
+Orynr Code does not come with an AI model service. It sends your messages, and the files and context needed to answer them, to the model provider you set up: either a server you run yourself or a third party such as OpenAI or Anthropic, using your own account and keys. Those providers are not Orynr LLC. Their terms, prices, data handling, availability and output are a matter between you and them, and we are not responsible for them, including any charges they make.
+
+The same applies to anything else you connect to Orynr Code, such as plugins, MCP servers, websites, container images and other tools.
+
+
+6. YOUR DATA AND PRIVACY
+
+Orynr Code runs on your computer. Your projects, chat history and settings stay on your computer, and the API keys you enter are stored there encrypted. Orynr Code does not send your code, messages, files or usage data to Orynr LLC.
+
+Data leaves your computer only when Orynr Code talks to a service you have chosen or asked it to use: your model provider (section 5), a web search or web page it fetches for you, or another tool you connect. It may also download components a feature needs, such as a code-intelligence server or a container image; those downloads do not carry your code or messages.
+
+
+7. OPEN-SOURCE COMPONENTS
+
+Orynr Code includes open-source software from other authors. Each of those components is licensed under its own licence, not this agreement, and nothing in this agreement limits your rights under those licences. Their notices and licences are in NOTICE.md and the THIRD_PARTY_LICENSES folder installed with Orynr Code.
+
+
+8. NO WARRANTY
+
+Orynr Code is provided free of charge, "AS IS" and "AS AVAILABLE", with all faults, and without warranty of any kind, whether express, implied or statutory. This includes, without limitation, any warranty of merchantability, fitness for a particular purpose, title, non-infringement, accuracy, or that Orynr Code or its output will be error-free, secure, uninterrupted, or free of harmful components. You use Orynr Code, and anything it produces, at your own risk.
+
+
+9. LIMITATION OF LIABILITY
+
+To the fullest extent permitted by law, Orynr LLC and its owners, staff, contractors and suppliers will not be liable for any indirect, incidental, special, consequential, exemplary or punitive damages, or for any loss of data, code, files, profits, revenue, business or goodwill, for damage to computers, systems or data, or for charges from third-party services, arising out of or related to Orynr Code, its output, or anything it does, however caused and even if we were told such damage was possible.
+
+Where our liability cannot be excluded, our total liability for all claims relating to Orynr Code is limited to fifty US dollars (USD 50).
+
+Some places do not allow some of these exclusions or limits. Where that is the case, they apply only as far as the law allows, and this agreement does not take away any rights you have as a consumer that cannot be waived.
+
+
+10. INDEMNITY
+
+You agree to indemnify and hold harmless Orynr LLC from claims, losses and costs (including reasonable legal fees) brought by others and arising from your use of Orynr Code, the material you create or process with it, or your breach of this agreement or of the law.
+
+
+11. UPDATES AND CHANGES
+
+We may update Orynr Code, change or remove features, or stop offering it at any time. A new version may come with an updated agreement; installing or using that version means accepting the agreement that comes with it.
+
+
+12. ENDING THIS AGREEMENT
+
+You can end this agreement at any time by uninstalling Orynr Code. It ends automatically if you break it, and you must then stop using and delete Orynr Code. Sections 2, 3 and 7 to 14 continue after it ends.
+
+
+13. EXPORT AND SANCTIONS
+
+You must follow the export-control and sanctions laws that apply to you when you download, use or move Orynr Code.
+
+
+14. GENERAL
+
+This agreement is the whole agreement between you and Orynr LLC about Orynr Code. If any part of it cannot be enforced, the rest still applies. If we do not enforce a part of it, we have not given up the right to enforce it later. You may not transfer this agreement to anyone else; we may transfer it, for example if the business changes hands. This agreement is governed by the laws of the State of Florida and the federal laws of the United States of America, without regard to conflict-of-law rules. This does not remove protections that the laws of your own country give you as a consumer.
+
+
+15. CONTACT
+
+Orynr LLC
+Website: https://orynr.com
+Email: info@orynr.com

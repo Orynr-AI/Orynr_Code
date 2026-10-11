@@ -1,0 +1,2 @@
+[test]
+preload = ["./test/isolated-profile.ts", "./test/preload.ts"]

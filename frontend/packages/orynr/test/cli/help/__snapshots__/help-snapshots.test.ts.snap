@@ -1,0 +1,593 @@
+// Bun Snapshot v1, https://bun.sh/docs/test/snapshots
+
+exports[`orynr CLI help-text snapshots every documented command emits stable help text: orynr acp --help 1`] = `
+"orynr acp
+
+start ACP (Agent Client Protocol) server
+
+Options:
+  -h, --help         show help                                                             [boolean]
+  -v, --version      show version number                                                   [boolean]
+      --print-logs   print logs to stderr                                                  [boolean]
+      --log-level    log level                  [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure         run without external plugins                                          [boolean]
+      --port         port to listen on                                      [number] [default: 4096]
+      --hostname     hostname to listen on                           [string] [default: "127.0.0.1"]
+      --mdns         enable mDNS service discovery (defaults hostname to 0.0.0.0)
+                                                                          [boolean] [default: false]
+      --mdns-domain  custom domain name for mDNS service (default: orynr.local)
+                                                                   [string] [default: "orynr.local"]
+      --cors         additional domains to allow for CORS                      [array] [default: []]
+      --cwd          working directory [string] [default: "<HOME>"]"
+`;
+
+exports[`orynr CLI help-text snapshots every documented command emits stable help text: orynr mcp --help 1`] = `
+"orynr mcp
+
+manage MCP (Model Context Protocol) servers
+
+Commands:
+  orynr mcp add [name]     add an MCP server
+  orynr mcp list           list MCP servers and their status                           [aliases: ls]
+  orynr mcp auth [name]    authenticate with an OAuth-enabled MCP server
+  orynr mcp logout [name]  remove OAuth credentials for an MCP server
+  orynr mcp debug <name>   debug OAuth connection for an MCP server
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]"
+`;
+
+exports[`orynr CLI help-text snapshots every documented command emits stable help text: orynr attach --help 1`] = `
+"orynr attach <url>
+
+attach to a running orynr server
+
+Positionals:
+  url  http://localhost:4096                                                     [string] [required]
+
+Options:
+  -h, --help          show help                                                            [boolean]
+  -v, --version       show version number                                                  [boolean]
+      --print-logs    print logs to stderr                                                 [boolean]
+      --log-level     log level                 [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure          run without external plugins                                         [boolean]
+      --dir           directory to run in                                                   [string]
+  -c, --continue      continue the last session                                            [boolean]
+  -s, --session       session id to continue                                                [string]
+      --fork          fork the session when continuing (use with --continue or --session)  [boolean]
+  -p, --password      basic auth password (defaults to ORYNR_SERVER_PASSWORD)               [string]
+  -u, --username      basic auth username (defaults to ORYNR_SERVER_USERNAME or 'orynr')    [string]
+      --mini          start the minimal interactive interface             [boolean] [default: false]
+      --no-replay     disable mini session history replay on resume and after resize       [boolean]
+      --replay-limit  cap visible mini replay to the newest N messages                      [number]"
+`;
+
+exports[`orynr CLI help-text snapshots every documented command emits stable help text: orynr run --help 1`] = `
+"orynr run [message..]
+
+run orynr with a message
+
+Positionals:
+  message  message to send                                                     [array] [default: []]
+
+Options:
+  -h, --help         show help                                                             [boolean]
+  -v, --version      show version number                                                   [boolean]
+      --print-logs   print logs to stderr                                                  [boolean]
+      --log-level    log level                  [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure         run without external plugins                                          [boolean]
+      --command      the command to run, use message for args                               [string]
+  -c, --continue     continue the last session                                             [boolean]
+  -s, --session      session id to continue                                                 [string]
+      --fork         fork the session before continuing (requires --continue or --session) [boolean]
+      --share        share the session                                                     [boolean]
+  -m, --model        model to use in the format of provider/model                           [string]
+      --agent        agent to use                                                           [string]
+      --format       format: default (formatted) or json (raw JSON events)
+                                          [string] [choices: "default", "json"] [default: "default"]
+  -f, --file         file(s) to attach to message                                            [array]
+      --title        title for the session (uses truncated prompt if no value provided)     [string]
+      --attach       attach to a running orynr server (e.g., http://localhost:4096)         [string]
+  -p, --password     basic auth password (defaults to ORYNR_SERVER_PASSWORD)                [string]
+  -u, --username     basic auth username (defaults to ORYNR_SERVER_USERNAME or 'orynr')     [string]
+      --dir          directory to run in, path on remote server if attaching                [string]
+      --port         port for the local server (defaults to random port if no value provided)
+                                                                                            [number]
+      --variant      model variant (provider-specific reasoning effort, e.g., high, max, minimal)
+                                                                                            [string]
+      --thinking     show thinking blocks                                                  [boolean]
+  -i, --interactive  run in direct interactive split-footer mode          [boolean] [default: false]
+      --auto         auto-approve permissions that are not explicitly denied (dangerous!)
+                                                                          [boolean] [default: false]"
+`;
+
+exports[`orynr CLI help-text snapshots every documented command emits stable help text: orynr debug --help 1`] = `
+"orynr debug
+
+debugging and troubleshooting tools
+
+Commands:
+  orynr debug config        show resolved configuration
+  orynr debug lsp           LSP debugging utilities
+  orynr debug rg            ripgrep debugging utilities
+  orynr debug file          file system debugging utilities
+  orynr debug scrap         list all known projects
+  orynr debug skill         list all available skills
+  orynr debug snapshot      snapshot debugging utilities
+  orynr debug startup       print startup timing
+  orynr debug agent <name>  show agent configuration details
+  orynr debug v2            debug v2 catalog and built-in plugins
+  orynr debug info          show debug information
+  orynr debug paths         show global paths (data, config, cache, state)
+  orynr debug wait          wait indefinitely (for debugging)
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]"
+`;
+
+exports[`orynr CLI help-text snapshots every documented command emits stable help text: orynr providers --help 1`] = `
+"orynr providers
+
+manage AI providers and credentials
+
+Commands:
+  orynr providers list               list providers and credentials                    [aliases: ls]
+  orynr providers login [url]        log in to a provider
+  orynr providers logout [provider]  log out from a configured provider
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]"
+`;
+
+exports[`orynr CLI help-text snapshots every documented command emits stable help text: orynr agent --help 1`] = `
+"orynr agent
+
+manage agents
+
+Commands:
+  orynr agent create  create a new agent
+  orynr agent list    list all available agents
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]"
+`;
+
+exports[`orynr CLI help-text snapshots every documented command emits stable help text: orynr upgrade --help 1`] = `
+"orynr upgrade [target]
+
+upgrade orynr to the latest or a specific version
+
+Positionals:
+  target  version to upgrade to, for ex '0.1.48' or 'v0.1.48'                               [string]
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]
+  -m, --method      installation method to use
+                [string] [choices: "source", "curl", "npm", "pnpm", "bun", "brew", "choco", "scoop"]"
+`;
+
+exports[`orynr CLI help-text snapshots every documented command emits stable help text: orynr uninstall --help 1`] = `
+"orynr uninstall
+
+uninstall orynr and remove all related files
+
+Options:
+  -h, --help         show help                                                             [boolean]
+  -v, --version      show version number                                                   [boolean]
+      --print-logs   print logs to stderr                                                  [boolean]
+      --log-level    log level                  [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure         run without external plugins                                          [boolean]
+  -c, --keep-config  keep configuration files                             [boolean] [default: false]
+  -d, --keep-data    keep session data and snapshots                      [boolean] [default: false]
+      --dry-run      show what would be removed without removing          [boolean] [default: false]
+  -f, --force        skip confirmation prompts                            [boolean] [default: false]"
+`;
+
+exports[`orynr CLI help-text snapshots every documented command emits stable help text: orynr serve --help 1`] = `
+"orynr serve
+
+starts a headless orynr server
+
+Options:
+  -h, --help         show help                                                             [boolean]
+  -v, --version      show version number                                                   [boolean]
+      --print-logs   print logs to stderr                                                  [boolean]
+      --log-level    log level                  [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure         run without external plugins                                          [boolean]
+      --port         port to listen on                                      [number] [default: 4096]
+      --hostname     hostname to listen on                           [string] [default: "127.0.0.1"]
+      --mdns         enable mDNS service discovery (defaults hostname to 0.0.0.0)
+                                                                          [boolean] [default: false]
+      --mdns-domain  custom domain name for mDNS service (default: orynr.local)
+                                                                   [string] [default: "orynr.local"]
+      --cors         additional domains to allow for CORS                      [array] [default: []]"
+`;
+
+exports[`orynr CLI help-text snapshots every documented command emits stable help text: orynr sandbox --help 1`] = `
+"orynr sandbox [runtime]
+
+show or set the execution sandbox runtime (local or docker)
+
+Positionals:
+  runtime  runtime to switch to; omit to show the current runtime
+                                                               [string] [choices: "local", "docker"]
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]"
+`;
+
+exports[`orynr CLI help-text snapshots every documented command emits stable help text: orynr web --help 1`] = `
+"orynr web
+
+start orynr server and open web interface
+
+Options:
+  -h, --help         show help                                                             [boolean]
+  -v, --version      show version number                                                   [boolean]
+      --print-logs   print logs to stderr                                                  [boolean]
+      --log-level    log level                  [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure         run without external plugins                                          [boolean]
+      --port         port to listen on                                      [number] [default: 4096]
+      --hostname     hostname to listen on                           [string] [default: "127.0.0.1"]
+      --mdns         enable mDNS service discovery (defaults hostname to 0.0.0.0)
+                                                                          [boolean] [default: false]
+      --mdns-domain  custom domain name for mDNS service (default: orynr.local)
+                                                                   [string] [default: "orynr.local"]
+      --cors         additional domains to allow for CORS                      [array] [default: []]"
+`;
+
+exports[`orynr CLI help-text snapshots every documented command emits stable help text: orynr models --help 1`] = `
+"orynr models [provider]
+
+list all available models
+
+Positionals:
+  provider  provider ID to filter models by                                                 [string]
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]
+      --verbose     use more verbose model output (includes metadata like costs)           [boolean]
+      --refresh     refresh the models cache from models.dev                               [boolean]"
+`;
+
+exports[`orynr CLI help-text snapshots every documented command emits stable help text: orynr stats --help 1`] = `
+"orynr stats
+
+show token usage and cost statistics
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]
+      --days        show stats for the last N days (default: all time)                      [number]
+      --tools       number of tools to show (default: all)                                  [number]
+      --models      show model statistics (default: hidden). Pass a number to show top N, otherwise
+                    shows all
+      --project     filter by project (default: all projects, empty string: current project)[string]"
+`;
+
+exports[`orynr CLI help-text snapshots every documented command emits stable help text: orynr export --help 1`] = `
+"orynr export [sessionID]
+
+export session data as JSON
+
+Positionals:
+  sessionID  session id to export                                                           [string]
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]
+      --sanitize    redact sensitive transcript and file data                              [boolean]"
+`;
+
+exports[`orynr CLI help-text snapshots every documented command emits stable help text: orynr import --help 1`] = `
+"orynr import <file>
+
+import session data from JSON file or URL
+
+Positionals:
+  file  path to JSON file or share URL                                           [string] [required]
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]"
+`;
+
+exports[`orynr CLI help-text snapshots every documented command emits stable help text: orynr pr --help 1`] = `
+"orynr pr <number>
+
+fetch and checkout a GitHub PR branch, then run orynr
+
+Positionals:
+  number  PR number to checkout                                                  [number] [required]
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]"
+`;
+
+exports[`orynr CLI help-text snapshots every documented command emits stable help text: orynr session --help 1`] = `
+"orynr session
+
+manage sessions
+
+Commands:
+  orynr session list                list sessions
+  orynr session delete <sessionID>  delete a session
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]"
+`;
+
+exports[`orynr CLI help-text snapshots every documented command emits stable help text: orynr plugin --help 1`] = `
+"orynr plugin <module>
+
+install plugin and update config
+
+Positionals:
+  module  npm module name                                                        [string] [required]
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]
+  -g, --global      install in global config                              [boolean] [default: false]
+  -f, --force       replace existing plugin version                       [boolean] [default: false]"
+`;
+
+exports[`orynr CLI help-text snapshots every documented command emits stable help text: orynr db --help 1`] = `
+"orynr db
+
+database tools
+
+Commands:
+  orynr db [query]     open an interactive sqlite3 shell or run a query                    [default]
+  orynr db path        print the database path
+
+Positionals:
+  query  SQL query to execute                                                               [string]
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]
+      --format      Output format                 [string] [choices: "json", "tsv"] [default: "tsv"]"
+`;
+
+exports[`orynr CLI help-text snapshots every documented command emits stable help text: orynr mcp list --help 1`] = `
+"orynr mcp list
+
+list MCP servers and their status
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]"
+`;
+
+exports[`orynr CLI help-text snapshots every documented command emits stable help text: orynr mcp add --help 1`] = `
+"orynr mcp add [name]
+
+add an MCP server
+
+Positionals:
+  name  name of the MCP server                                                              [string]
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]
+      --url         URL for a remote MCP server                                             [string]
+      --env         environment variable for a local MCP server (KEY=VALUE)                  [array]
+      --header      HTTP header for a remote MCP server (KEY=VALUE)                          [array]"
+`;
+
+exports[`orynr CLI help-text snapshots every documented command emits stable help text: orynr mcp auth --help 1`] = `
+"orynr mcp auth [name]
+
+authenticate with an OAuth-enabled MCP server
+
+Commands:
+  orynr mcp auth list  list OAuth-capable MCP servers and their auth status            [aliases: ls]
+
+Positionals:
+  name  name of the MCP server                                                              [string]
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]"
+`;
+
+exports[`orynr CLI help-text snapshots every documented command emits stable help text: orynr mcp logout --help 1`] = `
+"orynr mcp logout [name]
+
+remove OAuth credentials for an MCP server
+
+Positionals:
+  name  name of the MCP server                                                              [string]
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]"
+`;
+
+exports[`orynr CLI help-text snapshots every documented command emits stable help text: orynr providers list --help 1`] = `
+"orynr providers list
+
+list providers and credentials
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]"
+`;
+
+exports[`orynr CLI help-text snapshots every documented command emits stable help text: orynr providers login --help 1`] = `
+"orynr providers login [url]
+
+log in to a provider
+
+Positionals:
+  url  orynr auth provider                                                                  [string]
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]
+  -p, --provider    provider id or name to log in to (skips provider selection)             [string]
+  -m, --method      login method label (skips method selection)                             [string]"
+`;
+
+exports[`orynr CLI help-text snapshots every documented command emits stable help text: orynr providers logout --help 1`] = `
+"orynr providers logout [provider]
+
+log out from a configured provider
+
+Positionals:
+  provider  provider id or name to log out from                                             [string]
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]"
+`;
+
+exports[`orynr CLI help-text snapshots every documented command emits stable help text: orynr agent create --help 1`] = `
+"orynr agent create
+
+create a new agent
+
+Options:
+  -h, --help                  show help                                                    [boolean]
+  -v, --version               show version number                                          [boolean]
+      --print-logs            print logs to stderr                                         [boolean]
+      --log-level             log level         [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure                  run without external plugins                                 [boolean]
+      --path                  directory path to generate the agent file                     [string]
+      --description           what the agent should do                                      [string]
+      --mode                  agent mode            [string] [choices: "all", "primary", "subagent"]
+      --permissions, --tools  comma-separated list of permissions to allow (default: all).
+                              Available: "bash, read, edit, glob, grep, webfetch, task, todowrite,
+                              websearch, lsp, skill"                                        [string]
+  -m, --model                 model to use in the format of provider/model                  [string]"
+`;
+
+exports[`orynr CLI help-text snapshots every documented command emits stable help text: orynr agent list --help 1`] = `
+"orynr agent list
+
+list all available agents
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]"
+`;
+
+exports[`orynr CLI help-text snapshots every documented command emits stable help text: orynr session list --help 1`] = `
+"orynr session list
+
+list sessions
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]
+  -n, --max-count   limit to N most recent sessions                                         [number]
+      --format      output format             [string] [choices: "table", "json"] [default: "table"]"
+`;
+
+exports[`orynr CLI help-text snapshots every documented command emits stable help text: orynr session delete --help 1`] = `
+"orynr session delete <sessionID>
+
+delete a session
+
+Positionals:
+  sessionID  session ID to delete                                                [string] [required]
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]"
+`;
+
+exports[`orynr CLI help-text snapshots every documented command emits stable help text: orynr db path --help 1`] = `
+"orynr db path
+
+print the database path
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]"
+`;

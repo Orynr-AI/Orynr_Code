@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="chrome" gradientUnits="userSpaceOnUse" x1="230.40" y1="360.72" x2="478.45" y2="638.26">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.34" stop-color="#d9d9d9"/>
+      <stop offset="0.62" stop-color="#8f8f8f"/>
+      <stop offset="1" stop-color="#eeeeee"/>
+    </linearGradient>
+    <linearGradient id="redg" gradientUnits="userSpaceOnUse" x1="525.22" y1="366.82" x2="793.60" y2="635.21">
+      <stop offset="0" stop-color="#ff3333"/>
+      <stop offset="1" stop-color="#99060a"/>
+    </linearGradient>
+    <linearGradient id="frameg" gradientUnits="userSpaceOnUse" x1="41" y1="41" x2="983" y2="983">
+      <stop offset="0" stop-color="#8a0508"/>
+      <stop offset="1" stop-color="#ff3333"/>
+    </linearGradient>
+  </defs>
+  <rect x="41" y="41" width="942" height="942" rx="207" ry="207" fill="none" stroke="url(#frameg)" stroke-width="25.6"/>
+
+  <g transform="translate(8,8)" opacity="0.35">
+    <text x="210.07" y="633.18" font-family="Didot, Bodoni MT, Playfair Display, Times New Roman, Georgia, serif" font-size="406.64" font-weight="400"><tspan fill="#3f3f3f">O</tspan><tspan fill="#4a0307">R</tspan></text>
+    <path d="M 751.9,592.5 C 773.1,608.0 823.9,644.6 885.3,678.7 C 835.7,682.0 790.1,668.1 750.9,636.2 Z" fill="#4a0307"/>
+  </g>
+  <path d="M 751.9,592.5 C 773.1,608.0 823.9,644.6 885.3,678.7 C 835.7,682.0 790.1,668.1 750.9,636.2 Z" fill="url(#redg)"/>
+  <text x="210.07" y="633.18" font-family="Didot, Bodoni MT, Playfair Display, Times New Roman, Georgia, serif" font-size="406.64" font-weight="400"><tspan fill="url(#chrome)">O</tspan><tspan fill="url(#redg)">R</tspan></text>
+</svg>

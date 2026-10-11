@@ -1,0 +1,43 @@
+{
+  "$schema": "https://v2-8-13.turborepo.dev/schema.json",
+  "globalEnv": [
+    "CI",
+    "ORYNR_DISABLE_SHARE",
+    "ORYNRCODE_DISABLE_SHARE"
+  ],
+  "globalPassThroughEnv": [
+    "CI",
+    "ORYNR_DISABLE_SHARE",
+    "ORYNRCODE_DISABLE_SHARE"
+  ],
+  "tasks": {
+    "typecheck": {},
+    "build": {
+      "dependsOn": [],
+      "outputs": [
+        "dist/**"
+      ]
+    },
+    "orynr#test": {
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [],
+      "passThroughEnv": [
+        "*"
+      ]
+    },
+    "@orynr-ai/core#test": {
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": []
+    },
+    "@orynr-ai/ui#test": {
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": []
+    }
+  }
+}

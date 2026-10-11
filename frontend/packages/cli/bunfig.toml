@@ -1,0 +1,4 @@
+preload = ["@opentui/solid/preload"]
+
+[test]
+preload = ["../core/test/isolated-profile.ts", "@opentui/solid/preload"]

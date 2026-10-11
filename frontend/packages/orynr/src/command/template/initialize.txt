@@ -1,0 +1,83 @@
+Create or update `ORYNR.md` for this repository.
+
+`ORYNR.md` is the single most valuable file for future Orynr sessions: it is loaded into
+the system prompt on every run, so it is the project context the AI starts from. The goal is
+a compact, high-signal briefing that lets an agent act correctly on day one instead of
+rediscovering the same facts every session. Every line must earn its place — ask of each:
+"Would a capable agent likely get this wrong or waste time without being told?" If not, cut it.
+
+User-provided focus or constraints (honor these):
+$ARGUMENTS
+
+## How to investigate
+
+Read the highest-value sources first, then verify against the code:
+- `README*`, root manifests, workspace/monorepo config, lockfiles
+- build, test, lint, formatter, typecheck, and codegen config; `Makefile`/`Justfile`/task runners
+- CI workflows and pre-commit / git hooks
+- existing instruction files (`ORYNR.md`, `CLAUDE.md`, `.cursor/rules/`, `.cursorrules`, `.github/copilot-instructions.md`)
+- repo-local Orynr config such as `orynr.json`
+
+If architecture is still unclear after config and docs, inspect a small number of representative
+source files to find the real entrypoints, package boundaries, and execution flow. Prefer the files
+that show how the system is wired over random leaf files. Prefer executable sources of truth over
+prose: when docs conflict with config or scripts, trust the code and keep only what you can verify.
+
+## What a great ORYNR.md contains
+
+Aim for the sections below (omit any that don't apply; keep each tight). Order them roughly by how
+often an agent needs them:
+
+1. **What this is** — one or two sentences: the project's purpose and the stack/runtime.
+2. **Architecture map** — the major components, what each is responsible for, and how a request/data
+   flows through them end to end. A few lines or a small ASCII diagram beats paragraphs. Name the
+   real entrypoints (e.g. `src/index.ts`, `orynr_server/app.py`).
+3. **Commands** — the exact, copy-pasteable commands for: install/setup, run/dev, build, run ALL
+   tests, run a SINGLE test/file/package, lint, typecheck, format. Include required ordering when it
+   matters (e.g. `codegen -> build -> test`). These are the highest-ROI lines in the file.
+4. **Project layout** — a short index of the directories that matter and what lives in each, so an
+   agent knows where to look without a full-tree scan.
+5. **Conventions** — patterns this repo follows that differ from language/framework defaults: naming,
+   error handling, logging, imports, state management, commit/PR rules, formatting quirks.
+6. **Gotchas & hard-won knowledge** — THE most valuable section. Non-obvious traps that cost real
+   time: platform quirks, tools that silently drop/transform data, generated code that must not be
+   hand-edited, env/setup prerequisites, flaky or expensive suites, ordering hazards, footguns. Each
+   should be phrased as the fix or the rule, not just the symptom.
+7. **"To change X, look at Y"** — a small map from common tasks to the files/functions to edit. This
+   turns a cold start into a warm one.
+8. **Glossary** — project-specific terms, acronyms, and code names an agent would otherwise misread.
+9. **Do / Don't** — a few crisp guardrails (things that look reasonable but are wrong here).
+
+## Extraction priorities
+
+The highest-signal facts for an agent working in this repo:
+- exact developer commands, especially the non-obvious ones and how to scope them to one test/package
+- the real app/library entrypoints and the module boundaries / ownership of major directories
+- toolchain quirks: generated code, migrations, codegen, build artifacts, special env loading, dev
+  servers, infra/deploy flow, monorepo wiring
+- testing quirks: fixtures, integration prerequisites, snapshot workflows, required services, flaky
+  or slow suites, and how to run exactly one of them
+- constraints worth preserving from existing docs, and any repo-specific style/workflow rules
+
+Good `ORYNR.md` content is usually hard-earned context that took reading several files to infer —
+capture that, not the obvious.
+
+## Questions
+
+Only ask the user if the repo genuinely cannot answer something important. Use the `question` tool for
+one short batch at most. Good questions: undocumented team conventions; branch/PR/release
+expectations; setup or test prerequisites that are known but unwritten. Never ask what the repo
+already makes clear.
+
+## Writing rules
+
+Include only high-signal, repo-specific, verifiable guidance. Exclude generic software advice, long
+tutorials, exhaustive file trees, obvious language conventions, and anything you could not confirm.
+Prefer short sections and bullets over prose. Scale to the repo: keep a simple project's file simple;
+for a large one, summarize the few structural facts that actually change how an agent should work.
+When a detail belongs in another file, reference it via `orynr.json` `instructions` instead of pasting
+it. When in doubt, omit.
+
+If `ORYNR.md` already exists at `${path}`, improve it in place rather than rewriting blindly: preserve
+verified useful guidance, delete fluff or stale claims, fill the gaps above, and reconcile every line
+with the current codebase.
