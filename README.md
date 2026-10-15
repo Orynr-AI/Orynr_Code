@@ -6,6 +6,12 @@ Orynr Code plans, writes, runs and checks code with you. It works with a model o
 LM Studio, Ollama), with your **ChatGPT Plus/Pro** account, or with 150+ cloud providers — and it keeps long jobs
 going without losing track.
 
+**New in 3.1:** it sees, listens and speaks. Paste a screenshot, have a short video described, talk instead of
+type, hear the answer read out, or make an image — each task on its own model, kept on your own machine if you
+want. Few terminal coding agents go beyond pasted images; Orynr also handles video, speech in and out, and image
+making, and lets every one of them run fully local. Hundreds of skills sit in small groups the model opens only
+when needed, so the prompt stays light.
+
 ![Orynr Code](docs/screenshots/home.png)
 
 ## Download
@@ -27,6 +33,12 @@ everything it needs and works on any 64-bit Windows PC — no Python, no Node, n
   light hand-over instead of re-reading everything.
 - **Your own model server, first class.** Type an address like `192.0.2.10:8080` and Orynr finds the loaded model,
   its size and context length. Live "reading the conversation" progress while a local model works.
+- **Vision and audio.** Images and short videos described by a vision model, screenshots from MCP tools passed
+  straight to it, speech-to-text, text-to-speech (wav or ogg) and image making (saved to your Pictures folder).
+  Each task can use its own model and server and can be set to local-only or internet.
+- **Skills in groups.** Coding, documents, business, design, security and Unreal (editor + engine) — about 200
+  skills behind 7 short lines. The model opens a group only when the work needs it; drop your own skill into a
+  group folder and it is there at once.
 - **Built-in tools** for Excel, Word, PowerPoint, PDF, a browser, network and system checks, databases and more —
   plus MCP servers you add yourself, and Blender and Unreal Engine connections.
 - **Safe by default.** Approvals before changes, a project-folder rule, and an optional Docker sandbox with
