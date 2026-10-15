@@ -10,7 +10,7 @@ going without losing track.
 
 ## Download
 
-**Most people:** download **`orynr_code_setup_3.0.0.exe`** from [Releases](../../releases) and run it. It installs
+**Most people:** download **`orynr_code_setup_3.1.0.exe`** from [Releases](../../releases) and run it. It installs
 everything it needs and works on any 64-bit Windows PC — no Python, no Node, nothing else to set up.
 
 ## What it does
