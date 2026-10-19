@@ -16,7 +16,7 @@ when needed, so the prompt stays light.
 
 ## Download
 
-**Most people:** download **`orynr_code_setup_3.1.0.exe`** from [Releases](../../releases) and run it. It installs
+**Most people:** download **`orynr_code_setup_3.1.1.exe`** from [Releases](../../releases) and run it. It installs
 everything it needs and works on any 64-bit Windows PC — no Python, no Node, nothing else to set up.
 
 ## What it does
@@ -43,6 +43,11 @@ everything it needs and works on any 64-bit Windows PC — no Python, no Node, n
   plus MCP servers you add yourself, and Blender and Unreal Engine connections.
 - **Safe by default.** Approvals before changes, a project-folder rule, and an optional Docker sandbox with
   internet-only access. Keys are stored encrypted.
+- **Plugins.** `/plugins` switches built-in add-ons on or off: *Job-done alert* (a notification when a long job
+  finishes or needs you), *Safe mode* (read and make new files only — for family or shared PCs), *Git guard*
+  (stops force pushes, `reset --hard`, deleting outside the project) and *Secret shield* (no keys written into
+  code, keys hidden from output). Drop your own Python plugin into `%APPDATA%\Orynr\plugins`.
+- **Tidy on your PC.** Everything lives in `%APPDATA%\Orynr` and `%LOCALAPPDATA%\Orynr` — nothing in `.config`.
 - **Undo, history and project memory** — every change can be undone, and a project remembers what matters.
 
 | Chat | Approvals | Models |

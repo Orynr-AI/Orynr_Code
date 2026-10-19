@@ -92,6 +92,7 @@ import { DialogStartup, fetchReadiness } from "./component/dialog-startup"
 import { openProjectPicker } from "./component/dialog-project"
 import { openKnowledge } from "./component/dialog-knowledge"
 import { openKeys } from "./component/dialog-keys"
+import { openPlugins } from "./component/dialog-plugins"
 import { WaitingBar } from "./component/waiting-bar"
 
 registerOrynrSpinner()
@@ -649,6 +650,15 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
         slashName: "knowledge",
         run: () => {
           void openKnowledge(sdk, dialog)
+        },
+      },
+      {
+        name: "plugins.show",
+        title: "Plugins (switch on/off, add your own)",
+        category: "System",
+        slashName: "plugins",
+        run: () => {
+          void openPlugins(sdk, dialog, toast)
         },
       },
       {

@@ -20,7 +20,8 @@ export const files = Effect.fn("ConfigPaths.projectFiles")(function* (
   })).toReversed()
 })
 
-export const DIR_TARGETS = [".orynrcode"]
+// ".orynr" is the project folder the engine uses too (plugins, skills); ".orynrcode" still read for older projects.
+export const DIR_TARGETS = [".orynr", ".orynrcode"]
 
 export const directories = Effect.fn("ConfigPaths.directories")(function* (directory: string, worktree?: string) {
   const afs = yield* FSUtil.Service

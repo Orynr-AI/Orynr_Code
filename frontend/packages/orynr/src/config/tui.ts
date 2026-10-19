@@ -200,7 +200,9 @@ const loadState = Effect.fn("TuiConfig.loadState")(function* (ctx: { directory: 
   // 4. `.orynrcode` directories (and ORYNR_CONFIG_DIR) discovered while
   // walking up the tree. Also returned below so callers can install plugin
   // dependencies from each location.
-  const dirs = unique(directories).filter((dir) => dir.endsWith(".orynrcode") || dir === Flag.ORYNR_CONFIG_DIR)
+  const dirs = unique(directories).filter(
+    (dir) => dir.endsWith(".orynr") || dir.endsWith(".orynrcode") || dir === Flag.ORYNR_CONFIG_DIR,
+  )
 
   for (const dir of dirs) {
     for (const file of ConfigPaths.fileInDirectory(dir, "tui")) {

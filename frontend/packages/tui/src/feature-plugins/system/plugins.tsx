@@ -240,7 +240,7 @@ const tui: TuiPlugin = async (api) => {
     commands: [
       {
         name: "plugins.list",
-        title: "Plugins",
+        title: "Screen plugins",
         category: "System",
         namespace: "palette",
         run() {

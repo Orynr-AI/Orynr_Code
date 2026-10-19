@@ -134,13 +134,13 @@ try {
     process.stderr.write(errorMessage(e) + EOL)
   }
   // Always dump the FULL error (deep, with cause + stack) to a crash log so a generic "Unexpected error"
-  // is diagnosable on machines we can't see. See ~/.local/share/orynr/log/tui-crash.log.
+  // is diagnosable on machines we can't see. See <data>/log/tui-crash.log (%LOCALAPPDATA%\Orynr\data\log on Windows).
   try {
-    const os = await import("node:os")
     const fs = await import("node:fs")
     const path = await import("node:path")
     const util = await import("node:util")
-    const dir = path.join(os.homedir(), ".local", "share", "orynr", "log")
+    const { Global } = await import("@orynr-ai/core/global")
+    const dir = Global.Path.log
     fs.mkdirSync(dir, { recursive: true })
     fs.appendFileSync(
       path.join(dir, "tui-crash.log"),

@@ -9,10 +9,19 @@ import { makeGlobalNode } from "./effect/app-node"
 
 const app = "orynr"
 
-const data = path.join(xdgData!, app)
-const cache = path.join(xdgCache!, app)
-const config = path.join(xdgConfig!, app)
-const state = path.join(xdgState!, app)
+// On Windows Orynr keeps everything in its own AppData folders (settings/plugins/themes in %APPDATA%\Orynr, the rest
+// in %LOCALAPPDATA%\Orynr\<data|cache|state>), never ~/.config or ~/.local. An XDG_* variable still wins when set.
+// Must match orynr_server/global_paths.py.
+const win = process.platform === "win32"
+function root(env: string, xdg: string | undefined, kind: "APPDATA" | "LOCALAPPDATA", sub: string) {
+  if (process.env[env] || !win) return path.join(xdg!, app)
+  const base = process.env[kind] || path.join(os.homedir(), "AppData", kind === "APPDATA" ? "Roaming" : "Local")
+  return path.join(base, "Orynr", sub)
+}
+const data = root("XDG_DATA_HOME", xdgData, "LOCALAPPDATA", "data")
+const cache = root("XDG_CACHE_HOME", xdgCache, "LOCALAPPDATA", "cache")
+const config = root("XDG_CONFIG_HOME", xdgConfig, "APPDATA", "")
+const state = root("XDG_STATE_HOME", xdgState, "LOCALAPPDATA", "state")
 const tmp = path.join(os.tmpdir(), app)
 
 const paths = {
