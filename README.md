@@ -16,7 +16,7 @@ when needed, so the prompt stays light.
 
 ## Download
 
-**Most people:** download **`orynr_code_setup_3.1.1.exe`** from [Releases](../../releases) and run it. It installs
+**Most people:** download **`orynr_code_setup_3.1.2.exe`** from [Releases](../../releases) and run it. It installs
 everything it needs and works on any 64-bit Windows PC — no Python, no Node, nothing else to set up.
 
 ## What it does
