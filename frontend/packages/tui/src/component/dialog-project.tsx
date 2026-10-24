@@ -1,4 +1,5 @@
 import { Show } from "solid-js"
+import fs from "fs"
 import path from "path"
 import { useSDK } from "../context/sdk"
 import { useDialog } from "../ui/dialog"
@@ -84,15 +85,72 @@ export function DialogProject(props: { projects: Project[]; sandbox: Sandbox }) 
         onConfirm={(value) => {
           const name = value.trim()
           if (!name) return
+          askLocation(name)
+        }}
+      />
+    ))
+  }
+
+  // How the new project runs - the same three choices as /sandbox (Sai, 2026-10-23: creating a project from the
+  // first screen must be as complete as /sandbox). Docker choices say plainly when Docker isn't running.
+  // Where the new project's folder goes: the projects folder unless the user types another place (like /sandbox).
+  function askLocation(name: string) {
+    const root = sandbox().projects_root ?? paths.home
+    dialog.replace(() => (
+      <DialogPrompt
+        title={`Where should "${name}" go?`}
+        description={() => (
+          <text fg={theme.textMuted} wrapMode="word">
+            The folder that will hold it - Enter keeps your projects folder. The project becomes {"<this folder>"}\{name}.
+          </text>
+        )}
+        value={root}
+        placeholder={root}
+        onConfirm={(value) => {
+          const raw = value.trim().replace(/^["']+|["']+$/g, "")
+          const where = raw ? path.resolve(raw.startsWith("~") ? path.join(paths.home, raw.slice(1)) : raw) : root
+          askMode(name, path.resolve(where) === path.resolve(root) ? undefined : where)
+        }}
+      />
+    ))
+  }
+
+  function askMode(name: string, location?: string) {
+    const sb = sandbox()
+    const docker = Boolean(sb.docker_available)
+    const off = sb.docker_installed ? " - Docker isn't running (start Docker Desktop first)" : " - Docker is not installed"
+    type ModeChoice = "local" | "docker" | "docker-shared"
+    const options = [
+      {
+        title: "Docker",
+        value: "docker" as ModeChoice,
+        description: docker ? "safest: the AI works in a container that can reach the internet and nothing else" : off,
+      },
+      {
+        title: "Docker shared local",
+        value: "docker-shared" as ModeChoice,
+        description: docker ? "in a container, with the project folder shared with this PC" : off,
+      },
+      { title: "Local", value: "local" as ModeChoice, description: "a normal folder on this PC (code tools and app preview on)" },
+    ]
+    dialog.replace(() => (
+      <DialogSelect<ModeChoice>
+        title={`How should "${name}" run?`}
+        options={docker ? options : [options[2], options[0], options[1]]}
+        onSelect={(option) => {
+          if (option.value !== "local" && !docker) {
+            toast.show({ variant: "warning", message: `Docker isn't available${off.replace(" - Docker", ": Docker")}` })
+            return
+          }
           void (async () => {
             const res = await call<{ ok?: boolean; path?: string; error?: string; mode?: string }>(
               sdk,
               "/project/create",
-              { name },
+              { name, mode: option.value, location },
             )
             if (!res?.ok || !res.path) {
               toast.show({ variant: "error", message: res?.error ?? "Couldn't create the project" })
-              return
+              return askName()
             }
             await openFolder(res.path, MODE_LABEL[res.mode ?? "local"] ?? res.mode)
           })()
@@ -116,24 +174,48 @@ export function DialogProject(props: { projects: Project[]; sandbox: Sandbox }) 
           const raw = value.trim().replace(/^["']+|["']+$/g, "")
           if (!raw) return
           const folder = path.resolve(raw.startsWith("~") ? path.join(paths.home, raw.slice(1)) : raw)
-          void (async () => {
-            const res = await call<{ ok?: boolean; path?: string; error?: string; needs_trust?: boolean }>(
-              sdk,
-              "/project/open",
-              { path: folder },
-            )
-            if (!res?.ok || !res.path) {
-              toast.show({ variant: "error", message: res?.error ?? `Couldn't open ${folder}` })
-              return
-            }
-            await openFolder(
-              res.path,
-              res.needs_trust ? "it has its own instruction files: /trust loads them if you trust it" : undefined,
-            )
-          })()
+          if (!fs.existsSync(folder)) {
+            dialog.replace(() => (
+              <DialogSelect<"create" | "back">
+                title="That folder doesn't exist yet"
+                options={[
+                  { title: "Create it and open it", value: "create", description: folder },
+                  { title: "Back", value: "back", description: "type another path" },
+                ]}
+                onSelect={(opt) => {
+                  if (opt.value !== "create") return askPath()
+                  try {
+                    fs.mkdirSync(folder, { recursive: true })
+                  } catch (err) {
+                    toast.show({ variant: "error", message: `Couldn't create ${folder}: ${err instanceof Error ? err.message : String(err)}` })
+                    return askPath()
+                  }
+                  void openPath(folder)
+                }}
+              />
+            ))
+            return
+          }
+          void openPath(folder)
         }}
       />
     ))
+  }
+
+  async function openPath(folder: string) {
+    const res = await call<{ ok?: boolean; path?: string; error?: string; needs_trust?: boolean }>(
+      sdk,
+      "/project/open",
+      { path: folder },
+    )
+    if (!res?.ok || !res.path) {
+      toast.show({ variant: "error", message: res?.error ?? `Couldn't open ${folder}` })
+      return
+    }
+    await openFolder(
+      res.path,
+      res.needs_trust ? "it has its own instruction files: /trust loads them if you trust it" : undefined,
+    )
   }
 
   return (
@@ -151,10 +233,13 @@ export function DialogProject(props: { projects: Project[]; sandbox: Sandbox }) 
               ]
             : []),
           {
-            title: "New project",
+            title: "Create a new project",
             value: { kind: "new" },
-            description: `a new folder in ${sandbox().projects_root ?? "your projects folder"}`,
-            details: [dockerNote()],
+            description: "name it, choose where and Local or Docker",
+            details: [
+              `A new folder in ${sandbox().projects_root ?? "your projects folder"} - or anywhere you choose.`,
+              dockerNote().replace(/^./, (c) => c.toUpperCase()) + ".",
+            ],
           },
           ...(projects() ?? [])
             .filter((p) => p.path !== sandbox().project)
@@ -169,7 +254,7 @@ export function DialogProject(props: { projects: Project[]; sandbox: Sandbox }) 
           {
             title: "Another folder on this PC",
             value: { kind: "browse" },
-            description: "paste the path of a folder you already have",
+            description: "paste a folder's path - a new one is created for you",
           },
           {
             title: "Decide later",
